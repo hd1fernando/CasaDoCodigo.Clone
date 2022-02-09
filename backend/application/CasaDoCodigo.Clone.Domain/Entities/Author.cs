@@ -10,8 +10,8 @@ public class Author
 
     public Author(string? name, string? email, string? description)
     {
-
         PreConditions(name, email, description);
+        
         Name = name;
         Email = email!;
         Description = description;
@@ -25,7 +25,7 @@ public class Author
         IsRequiredWithException(description, nameof(description));
 
         if (description?.Length > 400)
-            throw new ArgumentException($"{nameof(description)} can't have more than 400 characteres");
+            throw new ArgumentException($"{nameof(description)} can't have more than 400 characteres.");
 
     }
 
