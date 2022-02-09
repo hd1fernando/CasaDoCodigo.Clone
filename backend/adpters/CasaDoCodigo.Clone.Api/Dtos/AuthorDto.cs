@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using CasaDoCodigo.Clone.Domain.Entities;
 
 namespace CasaDoCodigo.Clone.Api.Dtos;
 public class AuthorDto
@@ -13,4 +14,6 @@ public class AuthorDto
     [Required(ErrorMessage = "{0} is required")]
     [MaxLength(400, ErrorMessage = "{0} can't have more than {1} characteres")]
     public string? Description { get; set; }
+
+    public Author ToModel() => new Author(Name, Email, Description);
 }

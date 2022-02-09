@@ -11,6 +11,7 @@ public class AuthorController : ControllerBase
     [HttpPost]
     public async Task<ActionResult> Create(AuthorDto authorDto, CancellationToken cancellationToken)
     {
+        var author = authorDto.ToModel();
         
         return Ok();
     }
