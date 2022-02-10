@@ -1,6 +1,6 @@
 namespace CasaDoCodigo.Clone.Domain.Entities;
 
-public class Author
+public class AuthorEntity
 {
     public int Id { get; }
     public string? Name { get; }
@@ -8,10 +8,13 @@ public class Author
     public string? Description { get; }
     public DateTimeOffset RegistrationTime { get; }
 
-    public Author(string? name, string? email, string? description)
+
+    public AuthorEntity() { }
+
+    public AuthorEntity(string? name, string? email, string? description)
     {
         PreConditions(name, email, description);
-        
+
         Name = name;
         Email = email!;
         Description = description;

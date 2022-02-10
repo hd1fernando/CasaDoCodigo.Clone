@@ -4,6 +4,10 @@ namespace CasaDoCodigo.Clone.Domain.Entities;
 
 public struct Email
 {
+    public Email()
+    {
+        
+    }
     public Email(string email)
     {
         PreConditions(email);
