@@ -15,5 +15,5 @@ public class AuthorDto
     [MaxLength(400, ErrorMessage = "{0} can't have more than {1} characteres")]
     public string? Description { get; set; }
 
-    public Author ToModel() => new Author(Name, Email, Description);
+    public AuthorEntity ToModel() => new AuthorEntity(Name, Email, Description);
 }
