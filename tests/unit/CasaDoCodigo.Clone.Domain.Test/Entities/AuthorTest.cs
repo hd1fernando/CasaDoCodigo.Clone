@@ -13,7 +13,7 @@ public class AuthorTest
     [InlineData(null)]
     public void Test1(string name)
     {
-        Action sut = () => new Author(name, "teste@teste.com", "simple description");
+        Action sut = () => new AuthorEntity(name, "teste@teste.com", "simple description");
 
         sut.Should()
             .Throw<ArgumentException>(because: "Name can't be null")
@@ -25,7 +25,7 @@ public class AuthorTest
     [InlineData(null)]
     public void Test2(string email)
     {
-        Action sut = () => new Author("test", email, "simple description");
+        Action sut = () => new AuthorEntity("test", email, "simple description");
 
         sut.Should()
             .Throw<ArgumentException>(because: "Email can't be null")
@@ -37,7 +37,7 @@ public class AuthorTest
     [InlineData(null)]
     public void Test3(string description)
     {
-        Action sut = () => new Author("tes", "teste@teste.com", description);
+        Action sut = () => new AuthorEntity("tes", "teste@teste.com", description);
 
         sut.Should()
             .Throw<ArgumentException>(because: "Description can't be null")
@@ -49,7 +49,7 @@ public class AuthorTest
     public void Test4()
     {
         var description = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet ab";
-        Action sut = () => new Author("test", "teste@teste.com", description);
+        Action sut = () => new AuthorEntity("test", "teste@teste.com", description);
 
         sut.Should()
             .Throw<ArgumentException>(because: "Description can't have more than 400 characteres")
@@ -60,7 +60,7 @@ public class AuthorTest
     public void Test5()
     {
         var email = "teste.teste";
-        Action sut = () => new Author("tes", email, "simple description");
+        Action sut = () => new AuthorEntity("tes", email, "simple description");
 
         sut.Should()
             .Throw<ArgumentException>(because: "Email can't have invalid formation")
@@ -76,7 +76,7 @@ public class AuthorTest
         var email = fakePerson.Email;
         var description = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a";
 
-        Action sut = () => new Author(name, email, description);
+        Action sut = () => new AuthorEntity(name, email, description);
 
         sut.Should()
             .NotThrow<ArgumentException>(because: "Author was created in a valid format");
