@@ -4,10 +4,11 @@ public class AuthorEntity
 {
     public int Id { get; }
     public string? Name { get; }
-    public Email Email { get; }
     public string? Description { get; }
     public DateTimeOffset RegistrationTime { get; }
-
+    
+    public int EmailId { get; set; }
+    public Email Email { get; }
 
     public AuthorEntity() { }
 

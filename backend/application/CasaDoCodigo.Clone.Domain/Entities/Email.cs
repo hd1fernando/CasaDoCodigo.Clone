@@ -2,16 +2,22 @@ using System.Text.RegularExpressions;
 
 namespace CasaDoCodigo.Clone.Domain.Entities;
 
-public struct Email
+public record Email
 {
+    public int Id { get; }
+    public string Value { get; }
+    public AuthorEntity Author { get; }
+
     public Email()
     {
-        
+
     }
     public Email(string email)
     {
         PreConditions(email);
+        Value = email;
     }
+
 
     private void PreConditions(string email)
     {
