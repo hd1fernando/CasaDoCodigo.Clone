@@ -1,14 +1,48 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30114.105
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CasaDoCodigo.Clone.Api", "src\backend\CasaDoCodigo.Clone.Api\CasaDoCodigo.Clone.Api.csproj", "{63D86076-A834-4F79-AEB1-DA84360E9D16}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CasaDoCodigo.Clone.DatabaseAccess", "src\backend\CasaDoCodigo.Clone.DatabaseAccess\CasaDoCodigo.Clone.DatabaseAccess.csproj", "{6E473BDA-CD2A-4A00-B9C0-BC20954464A7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CasaDoCodigo.Clone.Domain", "src\backend\CasaDoCodigo.Clone.Domain\CasaDoCodigo.Clone.Domain.csproj", "{916C148A-CC03-4EEB-AFC1-F06BF18D93DF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{A8879A28-FDA3-48CD-A580-AD6E4CC0265D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CasaDoCodigo.Clone.Domain.Test", "tests\unit\CasaDoCodigo.Clone.Domain.Test\CasaDoCodigo.Clone.Domain.Test.csproj", "{0369DB17-0A64-4A2B-A878-36FE80D8AF15}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{63D86076-A834-4F79-AEB1-DA84360E9D16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63D86076-A834-4F79-AEB1-DA84360E9D16}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63D86076-A834-4F79-AEB1-DA84360E9D16}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63D86076-A834-4F79-AEB1-DA84360E9D16}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E473BDA-CD2A-4A00-B9C0-BC20954464A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E473BDA-CD2A-4A00-B9C0-BC20954464A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E473BDA-CD2A-4A00-B9C0-BC20954464A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E473BDA-CD2A-4A00-B9C0-BC20954464A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{916C148A-CC03-4EEB-AFC1-F06BF18D93DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{916C148A-CC03-4EEB-AFC1-F06BF18D93DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{916C148A-CC03-4EEB-AFC1-F06BF18D93DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{916C148A-CC03-4EEB-AFC1-F06BF18D93DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0369DB17-0A64-4A2B-A878-36FE80D8AF15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0369DB17-0A64-4A2B-A878-36FE80D8AF15}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0369DB17-0A64-4A2B-A878-36FE80D8AF15}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0369DB17-0A64-4A2B-A878-36FE80D8AF15}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0369DB17-0A64-4A2B-A878-36FE80D8AF15} = {A8879A28-FDA3-48CD-A580-AD6E4CC0265D}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2561403B-1433-472D-8CD8-A1D322840761}
 	EndGlobalSection
 EndGlobal

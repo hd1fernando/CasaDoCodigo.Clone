@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\backend\application\CasaDoCodigo.Clone.Domain\CasaDoCodigo.Clone.Domain.csproj" />
+    <ProjectReference Include="..\..\..\src\backend\CasaDoCodigo.Clone.Domain\CasaDoCodigo.Clone.Domain.csproj" />
   </ItemGroup>
 
 </Project>
