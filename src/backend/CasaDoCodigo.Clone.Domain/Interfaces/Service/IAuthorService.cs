@@ -3,5 +3,5 @@
 namespace CasaDoCodigo.Clone.Domain.Interfaces.Service;
 public interface IAuthorService
 {
-    public Task CreateAuthorAsync(AuthorEntity author, CancellationToken cancellation);
+    public Task CreateAuthorAsync(AuthorEntity author, CancellationToken cancellation = default);
 }

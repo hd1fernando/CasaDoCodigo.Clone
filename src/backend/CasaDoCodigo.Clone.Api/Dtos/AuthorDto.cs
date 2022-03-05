@@ -2,6 +2,7 @@ using System.ComponentModel.DataAnnotations;
 using CasaDoCodigo.Clone.Domain.Entities;
 
 namespace CasaDoCodigo.Clone.Api.Dtos;
+
 public class AuthorDto
 {
     [Required(ErrorMessage = "{0} is required")]

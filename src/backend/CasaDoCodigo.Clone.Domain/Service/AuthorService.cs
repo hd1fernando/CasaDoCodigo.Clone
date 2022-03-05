@@ -14,7 +14,7 @@ public class AuthorService : BaseService, IAuthorService
         _authorRepository = authorRepository;
     }
 
-    public async Task CreateAuthorAsync(AuthorEntity author, CancellationToken cancellationToken)
+    public async Task CreateAuthorAsync(AuthorEntity author, CancellationToken cancellationToken = default)
     {
         if (await IsEmailAlreadyAddedAsync(author.Email, cancellationToken))
         {

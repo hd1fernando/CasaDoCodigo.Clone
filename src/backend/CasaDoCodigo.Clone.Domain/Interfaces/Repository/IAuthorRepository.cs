@@ -4,6 +4,6 @@ namespace CasaDoCodigo.Clone.Domain.Repository;
 
 public interface IAuthorRepository
 {
-    public Task CreateAuthorAsync(AuthorEntity author, CancellationToken cancellationToken);
-    public Task<AuthorEntity> GetAuthorByEmailAsync(Email email, CancellationToken cancellationToken);
+    public Task CreateAuthorAsync(AuthorEntity author, CancellationToken cancellationToken = default);
+    public Task<AuthorEntity> GetAuthorByEmailAsync(Email email, CancellationToken cancellationToken = default);
 }

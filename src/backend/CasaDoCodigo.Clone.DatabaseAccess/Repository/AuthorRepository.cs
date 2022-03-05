@@ -15,12 +15,12 @@ public class AuthorRepository : IAuthorRepository
         DbSet = context.Set<AuthorEntity>();
     }
 
-    public async Task CreateAuthorAsync(AuthorEntity author, CancellationToken cancellationToken)
+    public async Task CreateAuthorAsync(AuthorEntity author, CancellationToken cancellationToken = default)
     {
         await DbSet.AddAsync(author, cancellationToken);
         await Context.SaveChangesAsync(cancellationToken);
     }
 
-    public async Task<AuthorEntity> GetAuthorByEmailAsync(Email email, CancellationToken cancellationToken)
+    public async Task<AuthorEntity> GetAuthorByEmailAsync(Email email, CancellationToken cancellationToken = default)
         => await DbSet.FirstOrDefaultAsync(a => a.Email.Value == email.Value,cancellationToken);
 }
