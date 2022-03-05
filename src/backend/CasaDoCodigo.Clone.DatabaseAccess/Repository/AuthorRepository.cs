@@ -20,4 +20,7 @@ public class AuthorRepository : IAuthorRepository
         await DbSet.AddAsync(author, cancellationToken);
         await Context.SaveChangesAsync(cancellationToken);
     }
+
+    public async Task<AuthorEntity> GetAuthorByEmailAsync(Email email, CancellationToken cancellationToken)
+        => await DbSet.FirstOrDefaultAsync(a => a.Email.Value == email.Value,cancellationToken);
 }

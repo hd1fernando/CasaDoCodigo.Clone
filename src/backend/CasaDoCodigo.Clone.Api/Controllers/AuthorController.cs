@@ -1,18 +1,18 @@
 using CasaDoCodigo.Clone.Api.Dtos;
-using CasaDoCodigo.Clone.Domain.Repository;
+using CasaDoCodigo.Clone.Domain.Interfaces;
+using CasaDoCodigo.Clone.Domain.Interfaces.Service;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CasaDoCodigo.Clone.Api.Controllers;
 
-[ApiController]
 [Route("api/[controller]")]
-public class AuthorController : ControllerBase
+public class AuthorController : MainController
 {
-    private IAuthorRepository _authorRepository;
+    private readonly IAuthorService _authorService;
 
-    public AuthorController(IAuthorRepository authorRepository)
+    public AuthorController(IAuthorService authorService, INotifier notifier):base(notifier)
     {
-        _authorRepository = authorRepository;
+        _authorService = authorService;
     }
 
     [HttpPost]
@@ -20,8 +20,8 @@ public class AuthorController : ControllerBase
     {
         var author = authorDto.ToModel();
 
-        await _authorRepository.CreateAuthorAsync(author, cancellationToken);
+        await _authorService.CreateAuthorAsync(author,cancellationToken);
 
-        return Ok();
+        return CustomResponse();
     }
 }

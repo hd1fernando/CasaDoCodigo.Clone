@@ -1,6 +1,10 @@
 using CasaDoCodigo.Clone.DatabaseAccess.Context;
 using CasaDoCodigo.Clone.DatabaseAccess.Repository;
+using CasaDoCodigo.Clone.Domain.Interfaces;
+using CasaDoCodigo.Clone.Domain.Interfaces.Service;
+using CasaDoCodigo.Clone.Domain.Notifications;
 using CasaDoCodigo.Clone.Domain.Repository;
+using CasaDoCodigo.Clone.Domain.Service;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,7 +17,9 @@ builder.Services.AddDbContext<CasaDoCodigoDbContext>(
             configuration.GetConnectionString("DefaultConnection"),
             b => b.MigrationsAssembly("CasaDoCodigo.Clone.Api")));
 
-builder.Services.AddTransient<IAuthorRepository, AuthorRepository>();
+builder.Services.AddScoped<IAuthorRepository, AuthorRepository>();
+builder.Services.AddScoped<IAuthorService, AuthorService>();
+builder.Services.AddScoped<INotifier, Notifier>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

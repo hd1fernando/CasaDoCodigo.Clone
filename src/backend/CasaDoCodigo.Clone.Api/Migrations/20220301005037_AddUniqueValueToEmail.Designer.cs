@@ -4,6 +4,7 @@ using CasaDoCodigo.Clone.DatabaseAccess.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CasaDoCodigo.Clone.Api.Migrations
 {
     [DbContext(typeof(CasaDoCodigoDbContext))]
-    partial class CasaDoCodigoDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220301005037_AddUniqueValueToEmail")]
+    partial class AddUniqueValueToEmail
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
