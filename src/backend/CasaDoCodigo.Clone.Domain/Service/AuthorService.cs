@@ -26,5 +26,5 @@ public class AuthorService : BaseService, IAuthorService
     }
 
     private async Task<bool> IsEmailAlreadyAddedAsync(Email email, CancellationToken cancellationToken)
-        => await _authorRepository.GetAuthorByEmailAsync(email, cancellationToken) is not null;
+        => await _authorRepository.GetAuthorByEmailAsync(email, cancellationToken) is null;
 }
