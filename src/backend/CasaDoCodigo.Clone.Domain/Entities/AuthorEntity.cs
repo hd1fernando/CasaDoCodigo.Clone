@@ -6,7 +6,7 @@ public class AuthorEntity
     public string? Name { get; }
     public string? Description { get; }
     public DateTimeOffset RegistrationTime { get; }
-    
+
     public int EmailId { get; set; }
     public Email Email { get; }
 
@@ -24,19 +24,15 @@ public class AuthorEntity
 
     private void PreConditions(string? name, string? email, string? description)
     {
-        IsRequiredWithException(name, nameof(name));
-        IsRequiredWithException(email, nameof(email));
-        IsRequiredWithException(description, nameof(description));
+        SelfTesting.IsRequiredWithException(name, nameof(name));
+        SelfTesting.IsRequiredWithException(email, nameof(email));
+        SelfTesting.IsRequiredWithException(description, nameof(description));
 
         if (description?.Length > 400)
             throw new ArgumentException($"{nameof(description)} can't have more than 400 characteres.");
 
     }
 
-    private void IsRequiredWithException(string? value, string propName)
-    {
-        if (string.IsNullOrEmpty(value))
-            throw new ArgumentException($"{propName} is required.");
-    }
+
 
 }

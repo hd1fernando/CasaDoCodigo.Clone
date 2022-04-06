@@ -4,7 +4,6 @@ using CasaDoCodigo.Clone.Domain.Interfaces.Service;
 using CasaDoCodigo.Clone.Domain.Repository;
 
 namespace CasaDoCodigo.Clone.Domain.Service;
-
 public class AuthorService : BaseService, IAuthorService
 {
     private readonly IAuthorRepository _authorRepository;
