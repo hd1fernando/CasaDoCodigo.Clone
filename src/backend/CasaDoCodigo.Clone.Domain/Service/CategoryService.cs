@@ -5,17 +5,22 @@ using CasaDoCodigo.Clone.Domain.Repository;
 
 namespace CasaDoCodigo.Clone.Domain.Service;
 
+// CI: 4
 public class CategoryService : BaseService, ICategoryService
 {
+    // 1
     private readonly ICategoryRepository _categoryRepository;
 
+    // 1
     public CategoryService(INotifier notifier, ICategoryRepository categoryRepository) : base(notifier)
     {
         _categoryRepository = categoryRepository;
     }
 
+    // 1
     public async Task CreateCategoryAsync(CategoryEntity category, CancellationToken cancellationToken = default)
     {
+        // 1
         if (await IsCategoryAlreadyAddedAsync(category))
         {
             SendNotification("Categoria já cadastrada");

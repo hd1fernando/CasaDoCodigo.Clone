@@ -4,9 +4,11 @@ using CasaDoCodigo.Clone.Domain.Repository;
 using Microsoft.EntityFrameworkCore;
 
 namespace CasaDoCodigo.Clone.DatabaseAccess.Repository;
-
+// CI: 4
+// 1
 public class AuthorRepository : IAuthorRepository
 {
+    // 2
     public CasaDoCodigoDbContext Context { get; }
     public DbSet<AuthorEntity> DbSet { get; }
 
@@ -22,6 +24,7 @@ public class AuthorRepository : IAuthorRepository
         await Context.SaveChangesAsync(cancellationToken);
     }
 
+    // 1
     public async Task<AuthorEntity> GetAuthorByEmailAsync(Email email, CancellationToken cancellationToken = default)
         => await DbSet.FirstOrDefaultAsync(a => a.Email.Value == email.Value, cancellationToken);
 }
