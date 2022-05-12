@@ -6,16 +6,11 @@ using Microsoft.EntityFrameworkCore;
 namespace CasaDoCodigo.Clone.DatabaseAccess.Repository;
 // CI: 4
 // 1
-public class AuthorRepository : IAuthorRepository
+public class AuthorRepository : Repository<AuthorEntity>, IAuthorRepository
 {
     // 2
-    public CasaDoCodigoDbContext Context { get; }
-    public DbSet<AuthorEntity> DbSet { get; }
-
-    public AuthorRepository(CasaDoCodigoDbContext context)
+    public AuthorRepository(CasaDoCodigoDbContext context) : base(context)
     {
-        Context = context;
-        DbSet = context.Set<AuthorEntity>();
     }
 
     public async Task CreateAuthorAsync(AuthorEntity author, CancellationToken cancellationToken = default)

@@ -15,7 +15,7 @@ public class AuthorService : BaseService, IAuthorService
 
     public async Task CreateAuthorAsync(AuthorEntity author, CancellationToken cancellationToken = default)
     {
-        if (await IsEmailAlreadyAddedAsync(author.Email, cancellationToken))
+        if (await _authorRepository.ValueAlreadyExistAsync(e => e.Email.Value == author.Email.Value, cancellationToken))
         {
             SendNotification("Email já cadastrado");
             return;
@@ -23,7 +23,4 @@ public class AuthorService : BaseService, IAuthorService
 
         await _authorRepository.CreateAuthorAsync(author, cancellationToken);
     }
-
-    private async Task<bool> IsEmailAlreadyAddedAsync(Email email, CancellationToken cancellationToken)
-        => await _authorRepository.GetAuthorByEmailAsync(email, cancellationToken) is not null;
 }

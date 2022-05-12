@@ -9,9 +9,7 @@ namespace CasaDoCodigo.Clone.DatabaseAccess.Repository;
 public class CategoryRepository : Repository<CategoryEntity>, ICategoryRepository
 {
     // 1
-    public CategoryRepository(CasaDoCodigoDbContext context) : base(context)
-    {
-    }
+    public CategoryRepository(CasaDoCodigoDbContext context) : base(context) { }
 
     // 1 
     public async Task<CategoryEntity> GetCategoryByNameAsync(string? name, CancellationToken cancellationToken = default)

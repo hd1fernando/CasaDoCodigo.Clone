@@ -23,8 +23,8 @@ public class AuthorServiceTest
 
         var sut = AuthorServiceBuild();
 
-        AuthorRepository.GetAuthorByEmailAsync(email)
-            .Returns(AuthorBuild().ToTask());
+        AuthorRepository.ValueAlreadyExistAsync(e => e.Email.Value == email)
+            .Returns(true);
 
         await sut.CreateAuthorAsync(AuthorBuild());
 
