@@ -7,4 +7,10 @@ public static class SelfTesting
         if (string.IsNullOrEmpty(value))
             throw new ArgumentException($"{propName} is required.");
     }
+
+    public static void Assert(bool validation, string errorMessage)
+    {
+        if (validation == false)
+            throw new ArgumentException(errorMessage);
+    }
 }
