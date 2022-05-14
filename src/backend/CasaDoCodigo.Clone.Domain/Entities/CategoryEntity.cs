@@ -1,9 +1,9 @@
 ﻿namespace CasaDoCodigo.Clone.Domain.Entities;
 
-public class CategoryEntity
+public class CategoryEntity : Entity
 {
-    public int Id { get; }
     public string? Name { get; }
+    public ICollection<BookEntity> Books { get; }
 
     public CategoryEntity(string? name)
     {

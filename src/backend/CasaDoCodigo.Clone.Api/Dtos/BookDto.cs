@@ -34,6 +34,6 @@ public class BookDto
     public int AuthorId { get; set; }
 
 
-    public BookEntity ToModel()
-        => new BookEntity();
+    public BookEntity ToModel(CategoryEntity category, AuthorEntity author)
+        => new BookEntity(Title, Abstract, Summary, Price, NumOfPages, ISBN, PublicationDate, category, author);
 }
