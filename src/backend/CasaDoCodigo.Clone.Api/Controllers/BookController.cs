@@ -44,6 +44,9 @@ public class BookController : MainController
         if (await _bookRepository.ValueAlreadyExistAsync(b => b.ISBN == bookDto.ISBN, cancellationToken))
             return CustomResponse("ISBN already exist in the system.");
 
+        if (await _bookRepository.ValueAlreadyExistAsync(b => b.Title == bookDto.Title, cancellationToken))
+            return CustomResponse("Title already exists.");
+
         var bookEntity = bookDto.ToModel(categoryEntity, authorEntity);
 
         await _bookRepository.CreateAsync(bookEntity, cancellationToken);
