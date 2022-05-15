@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CasaDoCodigo.Clone.Api.Controllers;
 
-// CI: 9
+// CI: 7
 [Route("api/[controller]")]
 public class BookController : MainController
 {
@@ -27,25 +27,28 @@ public class BookController : MainController
     }
 
     [HttpPost]
+    [ProducesResponseType(200)]
+    [ProducesResponseType(400)]
     // 1
     public async Task<ActionResult> CreateBook(BookDto bookDto, CancellationToken cancellationToken)
     {
         var categoryEntity = await _categoryRepository.GetAsync(bookDto.CategoryId, cancellationToken);
-        // 1
-        if (categoryEntity is null)
-            return CustomResponse("Non existent category.");
+        ValidateWithMessage(categoryEntity is null, "A categoria não exite.");
 
         var authorEntity = await _authorRepository.GetAsync(bookDto.AuthorId, cancellationToken);
-        // 1
-        if (authorEntity is null)
-            return CustomResponse("Non existent author.");
+        ValidateWithMessage(authorEntity is null, "Autor inexistente.");
+
+        ValidateWithMessage(
+            await _bookRepository.ValueAlreadyExistAsync(b => b.ISBN == bookDto.ISBN, cancellationToken),
+            "ISBN já cadastrado");
+
+        ValidateWithMessage(
+            await _bookRepository.ValueAlreadyExistAsync(b => b.Title == bookDto.Title, cancellationToken),
+            "Título já cadastrado.");
 
         // 1
-        if (await _bookRepository.ValueAlreadyExistAsync(b => b.ISBN == bookDto.ISBN, cancellationToken))
-            return CustomResponse("ISBN already exist in the system.");
-
-        if (await _bookRepository.ValueAlreadyExistAsync(b => b.Title == bookDto.Title, cancellationToken))
-            return CustomResponse("Title already exists.");
+        if (HasErrorMessage())
+            return CustomResponse();
 
         var bookEntity = bookDto.ToModel(categoryEntity, authorEntity);
 
@@ -53,4 +56,5 @@ public class BookController : MainController
 
         return CustomResponse();
     }
+
 }
