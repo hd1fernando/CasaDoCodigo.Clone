@@ -1,10 +1,5 @@
 namespace CasaDoCodigo.Clone.Domain.Entities;
 
-public abstract class Entity
-{
-    public int Id { get; }
-}
-
 public class AuthorEntity : Entity
 {
     public string? Name { get; }

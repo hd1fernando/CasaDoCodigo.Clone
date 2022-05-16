@@ -1,9 +1,7 @@
 using CasaDoCodigo.Clone.Api.Dtos;
-using CasaDoCodigo.Clone.Domain.Entities;
 using CasaDoCodigo.Clone.Domain.Interfaces;
 using CasaDoCodigo.Clone.Domain.Interfaces.Service;
 using Microsoft.AspNetCore.Mvc;
-using System.Threading;
 
 namespace CasaDoCodigo.Clone.Api.Controllers;
 

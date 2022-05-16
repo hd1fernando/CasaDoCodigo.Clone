@@ -36,4 +36,5 @@ public class Repository<TEntity> : IRepository<TEntity> where TEntity : Entity
 
     public async Task<IEnumerable<TEntity>> GetAllAsync(CancellationToken cancellationToken)
         => await DbSet.ToListAsync(cancellationToken);
+
 }
