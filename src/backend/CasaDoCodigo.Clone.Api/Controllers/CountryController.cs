@@ -5,6 +5,8 @@ using CasaDoCodigo.Clone.Domain.Repository;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CasaDoCodigo.Clone.Api.Controllers;
+
+[Route("api/[controller]")]
 public class CountryController : MainController
 {
     private readonly IRepository<CountryEntity> _countryRepository;

@@ -27,9 +27,9 @@ public class BookEntity : Entity
         SelfTesting.IsRequiredWithException(@abstract, nameof(@abstract));
         SelfTesting.IsRequiredWithException(isbn, nameof(isbn));
 
-        SelfTesting.Assert(@abstract?.Length <= 500, $"{nameof(@abstract)} can't have more than 500 characteres.");
-        SelfTesting.Assert(price >= 20, $"{nameof(price)} can't be less than 20.");
-        SelfTesting.Assert(numOfPages <= 100, $"{nameof(numOfPages)} can't be less than 100.");
+        SelfTesting.Assert(@abstract?.Length > 500, $"{nameof(@abstract)} can't have more than 500 characteres.");
+        SelfTesting.Assert(price < 20, $"{nameof(price)} can't be less than 20.");
+        SelfTesting.Assert(numOfPages < 100, $"{nameof(numOfPages)} can't be less than 100.");
 
         Title = title;
         Abstract = @abstract;

@@ -10,7 +10,7 @@ public static class SelfTesting
 
     public static void Assert(bool validation, string errorMessage)
     {
-        if (validation == false)
+        if (validation)
             throw new ArgumentException(errorMessage);
     }
 }
