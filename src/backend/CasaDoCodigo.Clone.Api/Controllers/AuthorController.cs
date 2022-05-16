@@ -1,7 +1,9 @@
 using CasaDoCodigo.Clone.Api.Dtos;
+using CasaDoCodigo.Clone.Domain.Entities;
 using CasaDoCodigo.Clone.Domain.Interfaces;
 using CasaDoCodigo.Clone.Domain.Interfaces.Service;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading;
 
 namespace CasaDoCodigo.Clone.Api.Controllers;
 
@@ -10,7 +12,7 @@ public class AuthorController : MainController
 {
     private readonly IAuthorService _authorService;
 
-    public AuthorController(IAuthorService authorService, INotifier notifier):base(notifier)
+    public AuthorController(IAuthorService authorService, INotifier notifier) : base(notifier)
     {
         _authorService = authorService;
     }
@@ -20,7 +22,7 @@ public class AuthorController : MainController
     {
         var author = authorDto.ToModel();
 
-        await _authorService.CreateAuthorAsync(author,cancellationToken);
+        await _authorService.CreateAuthorAsync(author, cancellationToken);
 
         return CustomResponse();
     }
