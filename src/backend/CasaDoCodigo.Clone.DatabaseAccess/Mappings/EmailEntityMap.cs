@@ -13,6 +13,6 @@ public class EmailEntityMap : IEntityTypeConfiguration<Email>
             .IsRequired();
         builder.HasIndex(p => p.Value).IsUnique();
 
-        builder.ToTable("Emails");
+        builder.ToTable("Email");
     }
 }

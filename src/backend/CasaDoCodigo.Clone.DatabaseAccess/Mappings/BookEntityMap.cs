@@ -36,5 +36,7 @@ public class BookEntityMap : IEntityTypeConfiguration<BookEntity>
         builder.HasOne(b => b.Category)
             .WithMany(c => c.Books)
             .IsRequired();
+
+        builder.ToTable("Book");
     }
 }

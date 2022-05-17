@@ -15,5 +15,7 @@ public class CountryEntityMap : IEntityTypeConfiguration<CountryEntity>
 
         builder.HasIndex(c => c.Name)
             .IsUnique();
+
+        builder.ToTable("Country");
     }
 }

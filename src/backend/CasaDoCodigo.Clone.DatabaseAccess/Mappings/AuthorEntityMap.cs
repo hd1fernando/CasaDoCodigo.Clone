@@ -22,6 +22,6 @@ public class AuthorEntityMap : IEntityTypeConfiguration<AuthorEntity>
             .HasForeignKey<AuthorEntity>(pk => pk.EmailId)
             .IsRequired();
 
-        builder.ToTable("Authors");
+        builder.ToTable("Author");
     }
 }
