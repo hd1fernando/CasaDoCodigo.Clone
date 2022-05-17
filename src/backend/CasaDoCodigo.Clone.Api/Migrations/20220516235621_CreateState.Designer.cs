@@ -4,6 +4,7 @@ using CasaDoCodigo.Clone.DatabaseAccess.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CasaDoCodigo.Clone.Api.Migrations
 {
     [DbContext(typeof(CasaDoCodigoDbContext))]
-    partial class CasaDoCodigoDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220516235621_CreateState")]
+    partial class CreateState
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -50,7 +52,7 @@ namespace CasaDoCodigo.Clone.Api.Migrations
                     b.HasIndex("EmailId")
                         .IsUnique();
 
-                    b.ToTable("Author", (string)null);
+                    b.ToTable("Authors", (string)null);
                 });
 
             modelBuilder.Entity("CasaDoCodigo.Clone.Domain.Entities.BookEntity", b =>
@@ -104,7 +106,7 @@ namespace CasaDoCodigo.Clone.Api.Migrations
                     b.HasIndex("Title")
                         .IsUnique();
 
-                    b.ToTable("Book", (string)null);
+                    b.ToTable("BookEntity");
                 });
 
             modelBuilder.Entity("CasaDoCodigo.Clone.Domain.Entities.CategoryEntity", b =>
@@ -124,7 +126,7 @@ namespace CasaDoCodigo.Clone.Api.Migrations
                     b.HasIndex("Name")
                         .IsUnique();
 
-                    b.ToTable("Category", (string)null);
+                    b.ToTable("CategoryEntity");
                 });
 
             modelBuilder.Entity("CasaDoCodigo.Clone.Domain.Entities.CountryEntity", b =>
@@ -144,7 +146,7 @@ namespace CasaDoCodigo.Clone.Api.Migrations
                     b.HasIndex("Name")
                         .IsUnique();
 
-                    b.ToTable("Country", (string)null);
+                    b.ToTable("CountryEntity");
                 });
 
             modelBuilder.Entity("CasaDoCodigo.Clone.Domain.Entities.Email", b =>
@@ -164,7 +166,7 @@ namespace CasaDoCodigo.Clone.Api.Migrations
                     b.HasIndex("Value")
                         .IsUnique();
 
-                    b.ToTable("Email", (string)null);
+                    b.ToTable("Emails", (string)null);
                 });
 
             modelBuilder.Entity("CasaDoCodigo.Clone.Domain.Entities.StateEntity", b =>
@@ -186,7 +188,7 @@ namespace CasaDoCodigo.Clone.Api.Migrations
 
                     b.HasIndex("CountryId");
 
-                    b.ToTable("State", (string)null);
+                    b.ToTable("StateEntity");
                 });
 
             modelBuilder.Entity("CasaDoCodigo.Clone.Domain.Entities.AuthorEntity", b =>

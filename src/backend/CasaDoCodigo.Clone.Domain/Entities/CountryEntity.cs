@@ -4,6 +4,7 @@ public class CountryEntity : Entity
 {
     public string? Name { get; }
     public CountryEntity() { }
+    public ICollection<StateEntity> States { get; }
 
     public CountryEntity(string? name)
     {
