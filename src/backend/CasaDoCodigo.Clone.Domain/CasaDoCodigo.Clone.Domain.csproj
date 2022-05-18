@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="jabuticaba" Version="0.3.0" />
+  </ItemGroup>
+
 </Project>

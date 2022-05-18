@@ -1,4 +1,5 @@
 ﻿using CasaDoCodigo.Clone.Api.Dtos.CustomAttributes;
+using CasaDoCodigo.Clone.Domain.Entities;
 using System.ComponentModel.DataAnnotations;
 
 namespace CasaDoCodigo.Clone.Api.Dtos;
@@ -31,7 +32,6 @@ public class PaymentDto
     [Range(1, int.MaxValue, ErrorMessage = "{0} is required")]
     public int CountryCode { get; set; }
 
-    [Range(1, int.MaxValue, ErrorMessage = "{0} is required")]
     public int StateCode { get; set; }
 
     [Required(ErrorMessage = "{0} is required.")]
@@ -39,5 +39,9 @@ public class PaymentDto
 
     [Required(ErrorMessage = "{0} is required.")]
     public string? ZipCode { get; set; }
+
+
+    public PaymentEntity ToModel(CountryEntity country, StateEntity state)
+        => new PaymentEntity(Email, Name, LastName, FiscalCode, Address, AddressComplement, City, country, state, PhoneNumber, ZipCode);
 
 }
