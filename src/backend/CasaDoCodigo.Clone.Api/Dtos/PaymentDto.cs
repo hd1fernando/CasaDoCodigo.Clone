@@ -40,6 +40,7 @@ public class PaymentDto
     [Required(ErrorMessage = "{0} is required.")]
     public string? ZipCode { get; set; }
 
+    public bool HasStateCode() => StateCode > 0;
 
     public PaymentEntity ToModel(CountryEntity country, StateEntity state)
         => new PaymentEntity(Email, Name, LastName, FiscalCode, Address, AddressComplement, City, country, state, PhoneNumber, ZipCode);

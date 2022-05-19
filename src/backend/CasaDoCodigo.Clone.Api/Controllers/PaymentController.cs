@@ -10,24 +10,30 @@ namespace CasaDoCodigo.Clone.Api.Controllers;
 public class PaymentController : MainController
 {
     private readonly IRepository<StateEntity> _stateEntity;
-    private readonly IRepository<CountryEntity> _countryEntity;
-    public PaymentController(INotifier notifier, IRepository<StateEntity> stateEntity, IRepository<CountryEntity> countryEntity) : base(notifier)
+    private readonly ICountryRepository _countryRepository;
+    public PaymentController(INotifier notifier, IRepository<StateEntity> stateEntity, ICountryRepository countryRepository) : base(notifier)
     {
         _stateEntity = stateEntity;
-        _countryEntity = countryEntity;
+        _countryRepository = countryRepository;
     }
 
     [HttpPost]
     public async Task<ActionResult> Create(PaymentDto paymentDto, CancellationToken cancellation)
     {
-        ValidateWithMessage(await _stateEntity.ValueAlreadyExistAsync(s => s.Country.Id == paymentDto.CountryCode) && paymentDto.StateCode == default,
-            "Estado é obrigatório");
+        var country = await _countryRepository.GetByIdAsync(paymentDto.CountryCode, cancellation);
 
-        var country = await _countryEntity.GetAsync(paymentDto.CountryCode, cancellation);
+        ValidateWithMessage(country.States is not null && country.States.Any() && paymentDto.HasStateCode() == false, "Um estado deve se selecionado");
+        if (HasErrorMessage())
+            return CustomResponse();
 
         StateEntity state = null;
-        if (paymentDto.StateCode > 0)
+        if (paymentDto.HasStateCode())
+        {
             state = await _stateEntity.GetAsync(paymentDto.StateCode, cancellation);
+            ValidateWithMessage(state is null, "O estado informado não existe");
+            if (HasErrorMessage())
+                return CustomResponse();
+        }
 
         var payment = paymentDto.ToModel(country, state);
 
