@@ -6,31 +6,43 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CasaDoCodigo.Clone.Api.Controllers;
 
+// CI: 8
 [Route("api/[controller]")]
 public class PaymentController : MainController
 {
-    private readonly IRepository<StateEntity> _stateEntity;
+    private readonly IStateRepository _stateRepository;
     private readonly ICountryRepository _countryRepository;
-    public PaymentController(INotifier notifier, IRepository<StateEntity> stateEntity, ICountryRepository countryRepository) : base(notifier)
+    //3
+    public PaymentController(INotifier notifier, ICountryRepository countryRepository, IStateRepository stateRepository) : base(notifier)
     {
-        _stateEntity = stateEntity;
         _countryRepository = countryRepository;
+        _stateRepository = stateRepository;
     }
 
     [HttpPost]
+    // 1
     public async Task<ActionResult> Create(PaymentDto paymentDto, CancellationToken cancellation)
     {
         var country = await _countryRepository.GetByIdAsync(paymentDto.CountryCode, cancellation);
 
-        ValidateWithMessage(country.States is not null && country.States.Any() && paymentDto.HasStateCode() == false, "Um estado deve se selecionado");
+        ValidateWithMessage(country is null, "O país informado não existe");
         if (HasErrorMessage())
             return CustomResponse();
 
+        ValidateWithMessage(country.HasState() && paymentDto.HasStateCode() == false, "Um estado deve ser selecionado");
+        // 1
+        if (HasErrorMessage())
+            return CustomResponse();
+
+        // 1
         StateEntity state = null;
         if (paymentDto.HasStateCode())
         {
-            state = await _stateEntity.GetAsync(paymentDto.StateCode, cancellation);
+            state = await _stateRepository.GetByIdAsync(paymentDto.StateCode, cancellation);
             ValidateWithMessage(state is null, "O estado informado não existe");
+            ValidateWithMessage(state.IsInTheCountry(country) == false, "O estado informado não pertence a esse pais");
+
+            // 1
             if (HasErrorMessage())
                 return CustomResponse();
         }

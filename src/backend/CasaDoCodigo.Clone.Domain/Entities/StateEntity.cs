@@ -15,4 +15,7 @@ public class StateEntity : Entity
         Name = name;
         Country = country;
     }
+
+    public bool IsInTheCountry(CountryEntity country)
+        => country.Id == Country.Id;
 }
