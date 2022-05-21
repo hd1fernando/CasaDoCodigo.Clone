@@ -4,6 +4,29 @@ using System.ComponentModel.DataAnnotations;
 
 namespace CasaDoCodigo.Clone.Api.Dtos;
 
+public class CartDto
+{
+    [Required(ErrorMessage = "{0} is required.")]
+    [Range(1, double.MaxValue, ErrorMessage = "{0} should be greater than 0.")]
+    public decimal Total { get; set; }
+
+    [MinLength(1, ErrorMessage = "At list {1} {0} should exist in the cart")]
+    public List<ItemDto> Itens { get; set; }
+
+    public IEnumerable<int> BooksId()
+        => Itens.Select(i => i.IdBook);
+}
+
+public class ItemDto
+{
+
+    [Range(1, int.MaxValue, ErrorMessage = "invalid {0}")]
+    public int IdBook { get; set; }
+
+    [Range(1, int.MaxValue, ErrorMessage = "{0} shoud be greater than 0.")]
+    public int Amount { get; set; }
+}
+
 public class PaymentDto
 {
     [Required(ErrorMessage = "{0} is required.")]
@@ -39,6 +62,9 @@ public class PaymentDto
 
     [Required(ErrorMessage = "{0} is required.")]
     public string? ZipCode { get; set; }
+
+    [Required(ErrorMessage = "{0} is required.")]
+    public CartDto Cart { get; set; }
 
     public bool HasStateCode() => StateCode > 0;
 

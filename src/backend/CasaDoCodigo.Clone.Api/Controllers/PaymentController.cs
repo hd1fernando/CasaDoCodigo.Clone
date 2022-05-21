@@ -12,11 +12,13 @@ public class PaymentController : MainController
 {
     private readonly IStateRepository _stateRepository;
     private readonly ICountryRepository _countryRepository;
+    private readonly IBookRepository _bookRepository;
     //3
-    public PaymentController(INotifier notifier, ICountryRepository countryRepository, IStateRepository stateRepository) : base(notifier)
+    public PaymentController(INotifier notifier, ICountryRepository countryRepository, IStateRepository stateRepository, IBookRepository bookRepository) : base(notifier)
     {
         _countryRepository = countryRepository;
         _stateRepository = stateRepository;
+        _bookRepository = bookRepository;
     }
 
     [HttpPost]
@@ -46,6 +48,19 @@ public class PaymentController : MainController
             if (HasErrorMessage())
                 return CustomResponse();
         }
+
+        var itens = paymentDto.Cart.Itens;
+        var calculatedAmount = 0m;
+
+        foreach (var iten in itens)
+        {
+            var bookId = iten.IdBook;
+            var book = await _bookRepository.GetAsync(bookId, cancellation);
+            ValidateWithMessage(book is null, $"O livro informado com o id {bookId} não existe.");
+            calculatedAmount += book.Price * iten.Amount;
+        }
+
+        ValidateWithMessage(calculatedAmount != paymentDto.Cart.Total, $"O total envido é inválido. O total deveria ser {calculatedAmount}");
 
         var payment = paymentDto.ToModel(country, state);
 

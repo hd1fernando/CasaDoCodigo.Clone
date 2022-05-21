@@ -16,4 +16,9 @@ public class BookRepository : Repository<BookEntity>, IBookRepository
             .Include(a => a.Author)
             .FirstOrDefaultAsync(a => a.Id == id, cancellationToken);
 
+    public async Task<IEnumerable<BookEntity>> GetBooks(int[] ids, CancellationToken cancellationToken)
+        => await DbSet
+            .Where(b => ids.Contains(b.Id))
+            .ToListAsync(cancellationToken);
+
 }
