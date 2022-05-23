@@ -7,7 +7,7 @@ public record Email
     public int Id { get; }
     public string Value { get; }
     public AuthorEntity Author { get; }
-
+    public PaymentEntity Payment { get; }
     public Email()
     {
 

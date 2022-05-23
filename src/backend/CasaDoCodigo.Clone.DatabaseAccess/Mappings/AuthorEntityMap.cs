@@ -7,6 +7,7 @@ namespace CasaDoCodigo.Clone.DatabaseAccess.Mappings;
 public class AuthorEntityMap : IEntityTypeConfiguration<AuthorEntity>
 {
     public void Configure(EntityTypeBuilder<AuthorEntity> builder)
+
     {
         builder.HasKey(p => p.Id);
         builder.Property(p => p.Name)

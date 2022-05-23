@@ -4,6 +4,35 @@ namespace CasaDoCodigo.Clone.Domain.Entities;
 
 public class PaymentEntity : Entity
 {
+    public Email Email { get; set; }
+    public int EmailId { get; set; }
+
+    public string? Name { get; set; }
+
+    public string? LastName { get; set; }
+
+    public string? FiscalCode { get; set; }
+
+    public string? Address { get; set; }
+
+    public string? AddressComplement { get; set; }
+
+    public string? City { get; set; }
+
+    public CountryEntity Country { get; set; }
+
+    public StateEntity State { get; set; }
+
+    public string? PhoneNumber { get; set; }
+
+    public string? ZipCode { get; set; }
+
+    [Obsolete("Just for ORM")]
+    public PaymentEntity()
+    {
+
+    }
+
     public PaymentEntity(
         string? email,
         string? name,
@@ -13,7 +42,6 @@ public class PaymentEntity : Entity
         string? addressComplement,
         string? city,
         CountryEntity country,
-        StateEntity state,
         string? phoneNumber,
         string? zipCode)
     {
@@ -38,7 +66,6 @@ public class PaymentEntity : Entity
         AddressComplement = addressComplement;
         City = city;
         Country = country;
-        State = state;
         PhoneNumber = phoneNumber;
         ZipCode = zipCode;
     }
@@ -55,25 +82,11 @@ public class PaymentEntity : Entity
         return cnpj.EValido;
     }
 
-    public Email Email { get; set; }
+    public void AddState(StateEntity state)
+    {
+        ArgumentNullException.ThrowIfNull(Country, nameof(Country));
+        SelfTesting.Assert(state.IsInTheCountry(Country) == false, "This state isn't in the country");
 
-    public string? Name { get; set; }
-
-    public string? LastName { get; set; }
-
-    public string? FiscalCode { get; set; }
-
-    public string? Address { get; set; }
-
-    public string? AddressComplement { get; set; }
-
-    public string? City { get; set; }
-
-    public CountryEntity Country { get; set; }
-
-    public StateEntity State { get; set; }
-
-    public string? PhoneNumber { get; set; }
-
-    public string? ZipCode { get; set; }
+        State = state;
+    }
 }

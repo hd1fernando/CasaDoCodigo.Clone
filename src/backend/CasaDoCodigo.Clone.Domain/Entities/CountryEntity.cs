@@ -5,6 +5,8 @@ public class CountryEntity : Entity
     public string? Name { get; }
     public CountryEntity() { }
     public ICollection<StateEntity> States { get; }
+    public ICollection<PaymentEntity> Purposes { get; }
+
 
     public CountryEntity(string? name)
     {
@@ -12,6 +14,7 @@ public class CountryEntity : Entity
 
         Name = name;
     }
+
 
     public bool HasState()
         => States != null && States.Any();

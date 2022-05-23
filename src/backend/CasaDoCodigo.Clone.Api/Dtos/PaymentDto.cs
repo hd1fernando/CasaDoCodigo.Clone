@@ -68,7 +68,17 @@ public class PaymentDto
 
     public bool HasStateCode() => StateCode > 0;
 
-    public PaymentEntity ToModel(CountryEntity country, StateEntity state)
-        => new PaymentEntity(Email, Name, LastName, FiscalCode, Address, AddressComplement, City, country, state, PhoneNumber, ZipCode);
+    public PaymentEntity ToModel(CountryEntity country)
+        => new PaymentEntity(
+            Email,
+            Name,
+            LastName,
+            FiscalCode,
+            Address,
+            AddressComplement,
+            City,
+            country,
+            PhoneNumber,
+            ZipCode);
 
 }
